@@ -1,4 +1,4 @@
-import "./App.css";
+import "./_App.scss";
 import "./_base.scss";
 
 export default function App() {
