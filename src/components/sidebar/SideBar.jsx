@@ -10,9 +10,9 @@ import {
 } from "react-icons/md";
 import { log_out } from "../../redux/actions/auth.action";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-const SideBar = ({ sidebar, handleToggleSidebar }) => {
+const SideBar = ({ sidebar, handleToggleSidebar, selecteur }) => {
   const dispatch = useDispatch();
   const logOutHandler = () => {
     dispatch(log_out());
@@ -35,12 +35,12 @@ const SideBar = ({ sidebar, handleToggleSidebar }) => {
           <span>Abonnements</span>
         </li>
       </Link>
-
-      <li>
-        <MdThumbUp size={23} />
-        <span>Vidéos "J'aime"</span>
-      </li>
-
+      <Link to="/feed/like">
+        <li>
+          <MdThumbUp size={23} />
+          <span>Vidéos "J'aime"</span>
+        </li>
+      </Link>
       <li>
         <MdHistory size={23} />
         <span>Historique</span>

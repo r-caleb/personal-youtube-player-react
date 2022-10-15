@@ -11,6 +11,7 @@ import WatchScreen from "./screens/watchscreen/WatchScreen";
 import SearchScreen from "./screens/SearchScreen";
 import SubscriptionsScreen from "./screens/subscriptions/SubscriptionsScreen";
 import ChannelScreen from "./screens/channelScreen/ChannelScreen";
+import LikeScreen from "./screens/likeScreen/Likescreen";
 
 const Layout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
@@ -73,6 +74,14 @@ export default function App() {
         element={
           <Layout>
             <SubscriptionsScreen />
+          </Layout>
+        }
+      />
+      <Route
+        path="/feed/like"
+        element={
+          <Layout>
+            <LikeScreen />
           </Layout>
         }
       />
