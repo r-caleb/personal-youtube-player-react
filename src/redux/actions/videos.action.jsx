@@ -5,6 +5,9 @@ import {
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
+  LIKE_VIDEOS_REQUEST,
+  LIKE_VIDEOS_SUCCESS,
+  LIKE_VIDEOS_FAIL,
   RELATED_VIDEO_FAIL,
   RELATED_VIDEO_REQUEST,
   RELATED_VIDEO_SUCCESS,
@@ -31,7 +34,7 @@ export const getPopularVideos = () => async (dispatch, getState) => {
         part: "snippet,contentDetails,statistics",
         chart: "mostPopular",
         regionCode: "FR",
-        maxResults: 20,
+        maxResults: 30,
         pageToken: getState().homeVideos.nextPageToken,
       },
     });
@@ -48,6 +51,40 @@ export const getPopularVideos = () => async (dispatch, getState) => {
     console.log(error.message);
     dispatch({
       type: HOME_VIDEOS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const getLikeVideos = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: LIKE_VIDEOS_REQUEST,
+    });
+    const { data } = await request("/videos", {
+      params: {
+        part: "snippet,contentDetails,statistics",
+        myRating: "like",
+        maxResults: 100,
+        pageToken: getState().likeVideos.nextPageToken,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+
+    dispatch({
+      type: LIKE_VIDEOS_SUCCESS,
+      payload: {
+        videos: data.items,
+        nextPageToken: data.nextPageToken,
+      },
+    });
+    console.log(data.items);
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: LIKE_VIDEOS_FAIL,
       payload: error.message,
     });
   }
@@ -214,7 +251,7 @@ export const getVideosByChannel = (id) => async (dispatch) => {
       params: {
         part: "snippet,contentDetails",
         playlistId: uploadPlaylistId,
-        maxResults: 30,
+        maxResults: 40,
       },
     });
 
