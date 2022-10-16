@@ -11,7 +11,7 @@ import WatchScreen from "./screens/watchscreen/WatchScreen";
 import SearchScreen from "./screens/SearchScreen";
 import SubscriptionsScreen from "./screens/subscriptions/SubscriptionsScreen";
 import ChannelScreen from "./screens/channelScreen/ChannelScreen";
-import LikeScreen from "./screens/likeScreen/Likescreen";
+import LikeScreen from "./screens/likeScreen/LikeScreen";
 
 const Layout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
