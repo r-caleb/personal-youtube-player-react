@@ -5,8 +5,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications, MdApps } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import logo from "./log.png";
+
 const Header = ({ handleToggleSidebar }) => {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Header = ({ handleToggleSidebar }) => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search" 
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
@@ -41,7 +41,6 @@ const Header = ({ handleToggleSidebar }) => {
 
       <div className="header__icons">
         <MdNotifications size={28} />
-        <MdApps size={28} />
         <img src={user?.photoURL} alt="avatar" />
       </div>
     </div>

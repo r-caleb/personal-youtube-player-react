@@ -40,7 +40,7 @@ const ChannelScreen = () => {
           </div>
         </div>
 
-        <button>S'ABONNER</button>
+        <button>ABONNE</button>
       </div>
 
       <Container>

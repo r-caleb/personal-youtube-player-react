@@ -19,7 +19,7 @@ const Video = ({ video, channelScreen }) => {
       thumbnails: { medium },
     },
     contentDetails,
-  } = video; 
+  } = video;
 
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
