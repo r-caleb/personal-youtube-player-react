@@ -211,7 +211,7 @@ export const getSubscribedChannels = () => async (dispatch, getState) => {
     const { data } = await request("/subscriptions", {
       params: {
         part: "snippet,contentDetails",
-
+        maxResults: 30,
         mine: true,
       },
       headers: {

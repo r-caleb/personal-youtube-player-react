@@ -14,8 +14,9 @@ $breakpoint-small: 520px;
     -webkit-line-clamp: $number;
     -webkit-box-orient: vertical;
  }
- ::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 0px;
+    height: 10;
  }
 
 *{
@@ -30,6 +31,4 @@ body{
     font-family: "Roboto", Courier, monospace;
     letter-spacing: 0.1px;
 }
-.selecteur{
-    background-color: red;
-}
+
