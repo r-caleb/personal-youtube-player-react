@@ -24,7 +24,7 @@ const SubscriptionsScreen = () => {
           <VideoHorizontal video={video} key={video.id} subScreen />
         ))
       ) : (
-        <SkeletonTheme color="#343a40" highlightColor="#3c4147">
+        <SkeletonTheme baseColor="#343a40" highlightColor="#3c4147">
           <Skeleton width="100%" height="160px" count={20} />
         </SkeletonTheme>
       )}
