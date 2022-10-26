@@ -18,8 +18,7 @@ const LoginScreen = () => {
     if (accessToken) {
       navigate("/");
     }
-  }, [accessToken, navigate]);
-
+  }, [accessToken, navigate]);  
   return (
     <div className="login">
       <div className="login__container">

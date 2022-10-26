@@ -81,7 +81,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
       className="py-2 m-1 videoHorizontal align-items-center"
       onClick={handleClick}
     >
-      {/* //TODO refractor grid */}
+   
       <Col
         xs={6}
         md={searchScreen || subScreen ? 4 : 6}

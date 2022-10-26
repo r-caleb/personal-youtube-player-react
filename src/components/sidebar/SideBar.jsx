@@ -12,10 +12,13 @@ import { log_out } from "../../redux/actions/auth.action";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
-const SideBar = ({ sidebar, handleToggleSidebar, selecteur }) => {
+const SideBar = ({ sidebar, handleToggleSidebar}) => {
   const dispatch = useDispatch();
   const logOutHandler = () => {
     dispatch(log_out());
+  };
+  let activeStyle = {
+    background: "#D0383C",
   };
 
   return (
@@ -23,25 +26,35 @@ const SideBar = ({ sidebar, handleToggleSidebar, selecteur }) => {
       className={sidebar ? "sidebar open" : "sidebar"}
       onClick={() => handleToggleSidebar(false)}
     >
-      <Link to="/">
+      <NavLink
+        to="/"
+        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        end
+      >
         <li>
           <MdHome size={23} />
           <span>Accueil</span>
         </li>
-      </Link>
-      <Link to="/feed/subscriptions">
+      </NavLink>
+      <NavLink
+        to="/feed/subscriptions"
+        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+      >
         <li>
           <MdSubscriptions size={23} />
           <span>Abonnements</span>
         </li>
-      </Link>
-      <Link to="/feed/like">
+      </NavLink>
+      <NavLink
+        to="/feed/like"
+        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+      >
         <li>
           <MdThumbUp size={23} />
           <span>Vidéos "J'aime"</span>
         </li>
-      </Link>
-      <li>
+      </NavLink>
+      {/* <li>
         <MdHistory size={23} />
         <span>Historique</span>
       </li>
@@ -49,14 +62,14 @@ const SideBar = ({ sidebar, handleToggleSidebar, selecteur }) => {
       <li>
         <MdLibraryBooks size={23} />
         <span>Bibliothèque</span>
-      </li>
+      </li> */}
 
       <hr />
 
-      <li onClick={logOutHandler}>
+      <NavLink onClick={logOutHandler}>
         <MdExitToApp size={23} />
         <span>Se déconnecter</span>
-      </li>
+      </NavLink>
 
       <hr />
     </nav>

@@ -33,5 +33,5 @@ const store = createStore(
   {},
   composeWithDevTools(applyMiddleware(thunk))
 );
-
+//made by r_c
 export default store;

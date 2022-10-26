@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Video from "../../components/video/Video";
 import { getChannelDetails } from "../../redux/actions/channel.action";
 import { getVideosByChannel } from "../../redux/actions/videos.action";
-
 import numeral from "numeral";
 
 import "./channelScreen.scss";
@@ -40,7 +40,7 @@ const ChannelScreen = () => {
           </div>
         </div>
 
-        <button>S'ABONNER</button>
+        <button>ABONNE</button>
       </div>
 
       <Container>
@@ -53,7 +53,7 @@ const ChannelScreen = () => {
               ))
             : [...Array(15)].map(() => (
                 <Col md={3} lg={3}>
-                  <SkeletonTheme color="#343a40" highlightColor="#3c4147">
+                  <SkeletonTheme baseColor="#343a40" highlightColor="#3c4147">
                     <Skeleton width="100%" height="140px" />
                   </SkeletonTheme>
                 </Col>
