@@ -12,7 +12,7 @@ import { log_out } from "../../redux/actions/auth.action";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
-const SideBar = ({ sidebar, handleToggleSidebar, selecteur }) => {
+const SideBar = ({ sidebar, handleToggleSidebar}) => {
   const dispatch = useDispatch();
   const logOutHandler = () => {
     dispatch(log_out());
