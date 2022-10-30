@@ -4,7 +4,6 @@ import logo from "../../components/header/log.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions/auth.action";
-
 const LoginScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -13,11 +12,10 @@ const LoginScreen = () => {
     dispatch(login());
   };
   const navigate = useNavigate();
-
   useEffect(() => {
     if (accessToken) {
       navigate("/");
-    }    
+    }
   }, [accessToken, navigate]);
   return (
     <div className="login">

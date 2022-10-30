@@ -70,7 +70,7 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
       </div>
       <div className="videoMetaData__description">
         <ShowMoreText
-          lines={3}
+          lines={2}
           more="VOIR PLUS"
           less="VOIR MOINS"
           anchorClass="showMoreText"

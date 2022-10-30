@@ -12,7 +12,7 @@ const Comment = ({ comment }) => {
         <p className="mb-1 comment__header">
           {authorDisplayName} • {moment(publishedAt).fromNow()}
         </p>
-        <p className="mb-0">{textDisplay}</p>
+        <p dangerouslySetInnerHTML={{ __html: textDisplay }} />
       </div>
     </div>
   );
