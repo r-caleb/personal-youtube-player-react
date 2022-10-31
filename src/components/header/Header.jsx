@@ -18,7 +18,7 @@ const Header = ({ handleToggleSidebar }) => {
 
   const user = useSelector((state) => state.auth?.user);
   return (
-    <div className="header ">
+    <div className="header">
       <FaBars
         className="header__menu"
         size={26}
@@ -30,7 +30,7 @@ const Header = ({ handleToggleSidebar }) => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Search" 
+          placeholder="Search"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />

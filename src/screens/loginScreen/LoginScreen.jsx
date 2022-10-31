@@ -7,7 +7,6 @@ import { login } from "../../redux/actions/auth.action";
 const LoginScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.auth.accessToken);
-
   const handleLogin = () => {
     dispatch(login());
   };
