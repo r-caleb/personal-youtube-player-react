@@ -93,7 +93,7 @@ export default function App() {
           </Layout>
         }
       ></Route>
-      <Route path="*" element={<Navigate to="/" />} />:
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

@@ -40,8 +40,8 @@ const Header = ({ handleToggleSidebar }) => {
       </form>
 
       <div className="header__icons">
-        <MdNotifications size={28} />
-        <img src={user?.photoURL} alt="avatar" />
+        <MdNotifications size={28} title="Voir les notifications" />
+        <img src={user?.photoURL} alt="avatar" title="mon profil"/>
       </div>
     </div>
   );

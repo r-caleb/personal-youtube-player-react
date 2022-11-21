@@ -53,7 +53,7 @@ const HomeScreen = () => {
               </Col>
             ))}
       </InfiniteScroll>
-    </Container>
+    </Container>    
   );
 };
 
