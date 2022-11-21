@@ -24,6 +24,7 @@ export const login = () => async (dispatch) => {
     const profile = {
       name: res.additionalUserInfo.profile.name,
       photoURL: res.additionalUserInfo.profile.picture,
+      email: res.additionalUserInfo.profile.email,
     };
 
     sessionStorage.setItem("ytc-access-token", accessToken);

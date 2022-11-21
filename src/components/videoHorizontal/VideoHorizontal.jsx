@@ -99,7 +99,10 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
         md={searchScreen || subScreen ? 8 : 6}
         className="p-0 videoHorizontal__right"
       >
-        <p className="mb-1 videoHorizontal__title">{title}</p>
+        <p
+          className="mb-1 videoHorizontal__title"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
 
         {isVideo && (
           <div className="videoHorizontal__details">
@@ -109,7 +112,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
         )}
 
         {(searchScreen || subScreen) && (
-          <p className="mt-1 videoHorizontal__desc">{description}</p>
+          <p className="mt-1 videoHorizontal__desc" dangerouslySetInnerHTML={{ __html: description }}/>
         )}
 
         <div className="my-1 videoHorizontal__channel d-flex align-items-center">

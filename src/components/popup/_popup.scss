@@ -1,0 +1,20 @@
+@import '../../_base.scss';
+
+.popup{
+    position: fixed;
+    top:8.6%;
+    left: 74%;
+    width: 20rem;
+    background-color: $black-primary;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 5px rgba(111, 111, 117, 0.2);
+    .popup_inner{
+        width: 100%;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+    }
+}
