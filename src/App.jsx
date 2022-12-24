@@ -12,6 +12,10 @@ import SearchScreen from "./screens/SearchScreen";
 import SubscriptionsScreen from "./screens/subscriptions/SubscriptionsScreen";
 import ChannelScreen from "./screens/channelScreen/ChannelScreen";
 import LikeScreen from "./screens/likeScreen/LikeScreen";
+import Notification from "./screens/notifications/Notification";
+import ProfileScreen from "./screens/profile/ProfileScreen";
+import socketIO from "socket.io-client";
+const socket = socketIO.connect("http://localhost:5000");
 
 const Layout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
@@ -65,7 +69,7 @@ export default function App() {
         path="/watch/:id"
         element={
           <Layout>
-            <WatchScreen />
+            <WatchScreen socket={socket} />
           </Layout>
         }
       />
@@ -82,6 +86,22 @@ export default function App() {
         element={
           <Layout>
             <LikeScreen />
+          </Layout>
+        }
+      />
+      <Route
+        path="/notifications"
+        element={
+          <Layout>
+            <Notification />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profile/edit"
+        element={
+          <Layout>
+            <ProfileScreen />
           </Layout>
         }
       />

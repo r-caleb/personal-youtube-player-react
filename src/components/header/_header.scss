@@ -70,28 +70,31 @@
           object-fit: contain;
        }
     }
-    .popup_avatar_name{
-      display: flex;
-      img {
-         border-radius: 50%;
-         width: 65px;
-         height:65px;
-         margin-right: 1.5rem;
-      }
-      div{
-         p:nth-child(2){
-            color:blue;
-            cursor: pointer;
-         }
-         span{
-            margin:1rem;
-         }
-         .reseaux_sociaux{
-            margin-bottom: 0.5rem;
-         }
-      }
-    }
- }
+   }
+   .avatar{
+     img {
+        border-radius: 50%;
+        width: 55px;
+        height:55px;
+        margin-right: 1rem;
+     }
+   }
+   .account{
+         font-weight: 350;
+          p:nth-child(3){
+             color:rgb(36, 114, 167);
+             cursor: pointer;
+         font-weight: 400;
+
+          }
+          span{
+             margin:1rem;
+          }
+          .reseaux_sociaux{
+             margin-bottom: 0.5rem;
+          }
+   }
+   
 
 @media (max-width: $breakpoint-small) {
     .header {

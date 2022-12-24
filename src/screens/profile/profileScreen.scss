@@ -1,0 +1,25 @@
+@import '../../_base.scss';
+
+.profile{ 
+    &__title{
+        padding: 2rem;
+    }
+    &__infos{
+        
+        .picture{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img {
+                border-radius: 50%;
+                width: 100px;
+                height:100px;
+             }
+        }
+        .infos{
+          padding-top: 4rem;
+        }
+    }
+
+}

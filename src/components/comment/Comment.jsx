@@ -1,21 +1,22 @@
 import React from "react";
-import moment from "moment";
+import moment from "moment/min/moment-with-locales";
 import "./_comment.scss";
-const Comment = ({ comment }) => {
-  const { authorDisplayName, authorProfileImageUrl, publishedAt, textDisplay } =
-    comment;
-
+const Comment = ({ message }) => {
+  /*   const { authorDisplayName, authorProfileImageUrl, publishedAt, textDisplay } =
+    comment; */
+  const { text, name, photo, time } = message;
+  moment.locale("fr");
   return (
     <div className="p-2 comment d-flex">
-      <img src={authorProfileImageUrl} alt="" className="mr-3 rounded-circle" />
+      <img src={photo} alt="" className="mr-3 rounded-circle" />
       <div className="comment__body">
         <p className="mb-1 comment__header">
-          {authorDisplayName} • {moment(publishedAt).fromNow()}
+          {name} • {moment(time).fromNow()}
         </p>
-        <p dangerouslySetInnerHTML={{ __html: textDisplay }} />
+        <p dangerouslySetInnerHTML={{ __html: text }} />
       </div>
     </div>
   );
 };
-
+  
 export default Comment;
