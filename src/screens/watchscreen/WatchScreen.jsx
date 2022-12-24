@@ -13,7 +13,7 @@ import {
 } from "../../redux/actions/videos.action";
 import "./watchScreen.scss";
 
-const WatchScreen = () => {
+const WatchScreen = ({ socket }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -49,6 +49,7 @@ const WatchScreen = () => {
         <Comments
           videoId={id}
           totalComments={video?.statistics?.commentCount}
+          socket={socket}
         />
       </Col>
       <Col lg={4}>

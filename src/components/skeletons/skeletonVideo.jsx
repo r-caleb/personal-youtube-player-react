@@ -13,6 +13,7 @@ const SkeletonVideo = () => {
             circle
             height={40}
             width={40}
+            inline
           />
           <Skeleton height={40} width="75%" />
         </div>

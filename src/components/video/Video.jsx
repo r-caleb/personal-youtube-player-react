@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./_video.scss";
-
 import { AiFillEye } from "react-icons/ai";
 import request from "../../api";
-
-import moment from "moment";
+import moment from "moment/min/moment-with-locales";
 import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +22,7 @@ const Video = ({ video, channelScreen }) => {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelIcon, setChannelIcon] = useState(null);
+  moment.locale("fr");
 
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
@@ -66,7 +65,6 @@ const Video = ({ video, channelScreen }) => {
   const handleVideoClick = () => {
     navigate(`/watch/${_videoId}`);
   };
-
   return (
     <div className="video" onClick={handleVideoClick}>
       <div className="video__top">

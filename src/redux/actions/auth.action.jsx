@@ -20,10 +20,11 @@ export const login = () => async (dispatch) => {
 
     const res = await auth.signInWithPopup(provider);
     const accessToken = res.credential.accessToken;
-    console.log(res);
+
     const profile = {
       name: res.additionalUserInfo.profile.name,
       photoURL: res.additionalUserInfo.profile.picture,
+      email: res.additionalUserInfo.profile.email,
     };
 
     sessionStorage.setItem("ytc-access-token", accessToken);
@@ -54,4 +55,5 @@ export const log_out = () => async (dispatch) => {
 
   sessionStorage.removeItem("ytc-access-token");
   sessionStorage.removeItem("ytc-user");
+  sessionStorage.removeItem("mongo-user");
 };

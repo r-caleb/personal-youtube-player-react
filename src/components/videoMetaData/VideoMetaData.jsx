@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import "./_videoMetaData.scss";
-import moment from "moment";
+import moment from "moment/min/moment-with-locales";
 import numeral from "numeral";
-
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
 import ShowMoreText from "react-show-more-text";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,16 +9,13 @@ import {
   checkSubscriptionStatus,
   getChannelDetails,
 } from "../../redux/actions/channel.action";
-
+moment.locale("fr");
 const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
   const { channelId, channelTitle, description, title, publishedAt } = snippet;
   const { viewCount, likeCount, dislikeCount } = statistics;
-
   const dispatch = useDispatch();
-
   const { snippet: channelSnippet, statistics: channelStatistics } =
     useSelector((state) => state.channelDetails.channel);
-
   const subscriptionStatus = useSelector(
     (state) => state.channelDetails.subscriptionStatus
   );
@@ -74,7 +70,7 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
       </div>
       <div className="videoMetaData__description">
         <ShowMoreText
-          lines={3}
+          lines={2}
           more="VOIR PLUS"
           less="VOIR MOINS"
           anchorClass="showMoreText"

@@ -3,12 +3,12 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAT2eZrM63jvSsUzClnXQ_ZTFOfvIeXB1Q",
-  authDomain: "rctube1.firebaseapp.com",
-  projectId: "rctube1",
-  storageBucket: "rctube1.appspot.com",
-  messagingSenderId: "150616097225",
-  appId: "1:150616097225:web:8a900b318412a15d196818"
+  apiKey: import.meta.env.VITE_YT_API_KEY,
+  authDomain: "rc--clone-yt.firebaseapp.com",
+  projectId: "rc--clone-yt",
+  storageBucket: "rc--clone-yt.appspot.com",
+  messagingSenderId: "576685436975",
+  appId: "1:576685436975:web:fcc0ca96a1b956883cd6da",
 };
 firebase.initializeApp(firebaseConfig);
 

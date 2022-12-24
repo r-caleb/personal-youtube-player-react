@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./_videoHorizontal.scss";
-
 import { AiFillEye } from "react-icons/ai";
 import request from "../../api";
-
-import moment from "moment";
+import moment from "moment/min/moment-with-locales";
 import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Col, NavLink, Row } from "react-bootstrap";
@@ -23,9 +21,9 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
       resourceId,
     },
   } = video;
+  moment.locale("fr");
 
   const isVideo = !(id.kind === "youtube#channel" || subScreen);
-
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelIcon, setChannelIcon] = useState(null);
@@ -81,7 +79,6 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
       className="py-2 m-1 videoHorizontal align-items-center"
       onClick={handleClick}
     >
-   
       <Col
         xs={6}
         md={searchScreen || subScreen ? 4 : 6}
@@ -102,7 +99,10 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
         md={searchScreen || subScreen ? 8 : 6}
         className="p-0 videoHorizontal__right"
       >
-        <p className="mb-1 videoHorizontal__title">{title}</p>
+        <p
+          className="mb-1 videoHorizontal__title"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
 
         {isVideo && (
           <div className="videoHorizontal__details">
@@ -112,7 +112,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
         )}
 
         {(searchScreen || subScreen) && (
-          <p className="mt-1 videoHorizontal__desc">{description}</p>
+          <p className="mt-1 videoHorizontal__desc" dangerouslySetInnerHTML={{ __html: description }}/>
         )}
 
         <div className="my-1 videoHorizontal__channel d-flex align-items-center">
