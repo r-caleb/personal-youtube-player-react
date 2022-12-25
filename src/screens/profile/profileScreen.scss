@@ -47,7 +47,10 @@
              }
         }
         .infos{
-          
+          .save{
+            display: flex;
+            justify-content: flex-end;
+          }
          }  
         }
     }

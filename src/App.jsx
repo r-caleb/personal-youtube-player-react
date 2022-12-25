@@ -112,7 +112,7 @@ export default function App() {
             <ChannelScreen />
           </Layout>
         }
-      ></Route>
+      />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

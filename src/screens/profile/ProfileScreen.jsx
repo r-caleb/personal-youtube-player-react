@@ -59,12 +59,6 @@ const ProfileScreen = () => {
           <Col xs={0} md={1}></Col>
           <Col className="picture">
             <img src={image} alt="avatar" title="mon profil" />
-            {/*  <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-          ></input> */}
             <input
               type="file"
               onChange={onImageChange}
@@ -155,9 +149,11 @@ const ProfileScreen = () => {
             >
               Annuler
             </Button> */}
-            <Button variant="primary" type="submit" className="m-2 bouton">
-              Modifier
-            </Button>
+            <div className="save">
+              <Button variant="primary" type="submit" className="m-2 bouton">
+                Enregistrer
+              </Button>
+            </div>
           </Col>
           <Col xs={0} md={1}></Col>
         </Row>
