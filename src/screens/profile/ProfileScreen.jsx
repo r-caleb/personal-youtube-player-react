@@ -28,7 +28,19 @@ const ProfileScreen = () => {
   }, []);
   function updateUser(e) {
     e.preventDefault();
-   
+    fetch(`http://localhost:5000/login/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...input, photo: image }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
   }
 
   const onImageChange = (event) => {
