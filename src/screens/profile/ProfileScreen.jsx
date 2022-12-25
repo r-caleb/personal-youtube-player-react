@@ -149,9 +149,11 @@ const ProfileScreen = () => {
             >
               Annuler
             </Button> */}
-            <Button variant="primary" type="submit" className="m-2 bouton">
-              Modifier
-            </Button>
+            <div className="save">
+              <Button variant="primary" type="submit" className="m-2 bouton">
+                Enregistrer
+              </Button>
+            </div>
           </Col>
           <Col xs={0} md={1}></Col>
         </Row>
