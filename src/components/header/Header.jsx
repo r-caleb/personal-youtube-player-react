@@ -8,13 +8,14 @@ import {
 } from "react-icons/ai";
 import { MdNotifications } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Popup from "../popup/Popup";
 import logo from "./log.png";
 import { Col, Row } from "react-bootstrap";
 const Header = ({ handleToggleSidebar }) => {
   const [buttonPopup, setBoutonPopup] = useState(false);
   const [userMongo, setUserMongo] = useState(false);
+  const [displayUser, setDisplayUser] = useState([]);
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ const Header = ({ handleToggleSidebar }) => {
     email: user?.email,
     photo: user?.photoURL,
   };
+
   useEffect(() => {
     fetch("http://localhost:5000/login", {
       method: "POST",
@@ -50,6 +52,16 @@ const Header = ({ handleToggleSidebar }) => {
       .then((response) => response.json())
       .then((data) => setUserMongo(data));
   }, [userMongo]);
+  const handleFacebook = () => {
+    window.open(userMongo?.facebook);
+  };
+  const handleInstagram = () => {
+    window.open(userMongo?.instagram);
+  };
+  const handleTwitter = () => {
+    window.open(userMongo?.twitter);
+  };
+
   return (
     <div className="header">
       <FaBars
@@ -93,15 +105,15 @@ const Header = ({ handleToggleSidebar }) => {
             <p className="mb-2">{userMongo?.email}</p>
             <p onClick={handleCompte}> Gérer votre compte</p>
             <hr />
-            <div className="reseaux_sociaux">
+            <div className="reseaux_sociaux" onClick={handleFacebook}>
               <FaFacebookSquare size={35} />
               <span>Facebook</span>
             </div>
-            <div className="reseaux_sociaux">
+            <div className="reseaux_sociaux" onClick={handleInstagram}>
               <AiFillInstagram size={35} />
               <span>Instagram</span>
             </div>
-            <div className="reseaux_sociaux">
+            <div className="reseaux_sociaux" onClick={handleTwitter}>
               <AiFillTwitterSquare size={35} />
               <span>Twitter</span>
             </div>
