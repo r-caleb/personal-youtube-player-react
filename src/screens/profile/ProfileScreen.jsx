@@ -59,12 +59,6 @@ const ProfileScreen = () => {
           <Col xs={0} md={1}></Col>
           <Col className="picture">
             <img src={image} alt="avatar" title="mon profil" />
-            {/*  <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-          ></input> */}
             <input
               type="file"
               onChange={onImageChange}

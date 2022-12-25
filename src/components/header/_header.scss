@@ -66,8 +66,9 @@
        align-items: center;
        img {
           border-radius: 50%;
-          width: 45px;
-          object-fit: contain;
+          width: 35px;
+          height: 40px;
+          object-fit: cover;
        }
     }
    }
