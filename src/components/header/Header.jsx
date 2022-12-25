@@ -29,7 +29,7 @@ const Header = ({ handleToggleSidebar }) => {
     navigate("/notifications");
   };
   const handleCompte = () => {
-    navigate("/profile/edit");
+    navigate(`/profile/edit/${userMongo?._id}`);
     setBoutonPopup(false);
   };
 
@@ -49,7 +49,7 @@ const Header = ({ handleToggleSidebar }) => {
     })
       .then((response) => response.json())
       .then((data) => setUserMongo(data));
-  }, []);
+  }, [userMongo]);
   return (
     <div className="header">
       <FaBars

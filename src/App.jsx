@@ -98,7 +98,7 @@ export default function App() {
         }
       />
       <Route
-        path="/profile/edit"
+        path="/profile/edit/:id"
         element={
           <Layout>
             <ProfileScreen />
