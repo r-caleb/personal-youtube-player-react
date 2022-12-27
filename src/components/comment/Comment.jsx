@@ -4,7 +4,7 @@ import "./_comment.scss";
 const Comment = ({ message }) => {
   /*   const { authorDisplayName, authorProfileImageUrl, publishedAt, textDisplay } =
     comment; */
-  const { text, name, photo, time } = message;
+  const { comment, name, photo, time } = message;
   moment.locale("fr");
   return (
     <div className="p-2 comment d-flex">
@@ -13,10 +13,10 @@ const Comment = ({ message }) => {
         <p className="mb-1 comment__header">
           {name} • {moment(time).fromNow()}
         </p>
-        <p dangerouslySetInnerHTML={{ __html: text }} />
+        <p dangerouslySetInnerHTML={{ __html: comment }} />
       </div>
     </div>
   );
 };
-  
+
 export default Comment;

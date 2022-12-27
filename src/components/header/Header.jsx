@@ -6,6 +6,8 @@ import {
   AiFillInstagram,
   AiFillTwitterSquare,
 } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { MdNotifications } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -50,18 +52,47 @@ const Header = ({ handleToggleSidebar }) => {
       body: JSON.stringify(mongoUser),
     })
       .then((response) => response.json())
-      .then((data) => setUserMongo(data));
+      .then((data) => {
+        setUserMongo(data);
+        sessionStorage.setItem("mongo-user", JSON.stringify(data));
+      });
   }, [userMongo]);
   const handleFacebook = () => {
-    window.open(userMongo?.facebook);
+    if (userMongo?.facebook) {
+      window.open(userMongo?.facebook);
+    } else {
+      toast.error(
+        "Pas de lien Facebook, veillez l'ajouter en appuyant sur Gérer mon compte",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        }
+      );
+    }
   };
   const handleInstagram = () => {
-    window.open(userMongo?.instagram);
+    if (userMongo?.instagram) {
+      window.open(userMongo?.instagram);
+    } else {
+      toast.error(
+        "Pas de lien Instagram, veillez l'ajouter en appuyant sur Gérer mon compte",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        }
+      );
+    }
   };
   const handleTwitter = () => {
-    window.open(userMongo?.twitter);
+    if (userMongo?.twitter) {
+      window.open(userMongo?.twitter);
+    } else {
+      toast.error(
+        "Pas de lien Twitter, veillez l'ajouter en appuyant sur Gérer mon compte",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        }
+      );
+    }
   };
-
   return (
     <div className="header">
       <FaBars
@@ -103,7 +134,7 @@ const Header = ({ handleToggleSidebar }) => {
           <Col className="account">
             <p className="mb-0">{userMongo?.username}</p>
             <p className="mb-2">{userMongo?.email}</p>
-            <p onClick={handleCompte}> Gérer votre compte</p>
+            <p onClick={handleCompte}> Gérer mon compte</p>
             <hr />
             <div className="reseaux_sociaux" onClick={handleFacebook}>
               <FaFacebookSquare size={35} />
@@ -117,17 +148,10 @@ const Header = ({ handleToggleSidebar }) => {
               <AiFillTwitterSquare size={35} />
               <span>Twitter</span>
             </div>
+            <ToastContainer />
           </Col>
         </Row>
       </Popup>
-      {/* <Popup trigger={buttonPopup}>
-        <div >
-         
-          <div>
-            
-          </div>
-        </div>
-      </Popup> */}
     </div>
   );
 };

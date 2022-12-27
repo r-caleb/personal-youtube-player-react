@@ -12,14 +12,18 @@ const Comments = ({ videoId, totalComments, socket }) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [typingStatus, setTypingStatus] = useState("");
+  const [text, setText] = useState("");
 
   useEffect(() => {
+    socket.on("output-comments", (comment) => {
+      setMessages(comment);
+    });
     socket.on("commentResponse", (comment) =>
       setMessages([...messages, comment])
     );
-    dispatch(getCommentsOfVideoById(videoId));
-  }, [videoId, dispatch, socket, messages]);
-
+    /*  dispatch(getCommentsOfVideoById(videoId)); */
+  }, [videoId /* dispatch */, socket, messages]);
+  const user = JSON.parse(sessionStorage.getItem("mongo-user"));
   useEffect(() => {
     socket.on("typingResponse", (data) => {
       setTypingStatus(data);
@@ -28,14 +32,11 @@ const Comments = ({ videoId, totalComments, socket }) => {
       }, 1000);
     });
   }, [socket]);
-  const comments = useSelector((state) => state.commentList.comments);
-  const user = useSelector((state) => state.auth?.user);
-
-  const [text, setText] = useState("");
-
-  const _comments = comments?.map(
+  /*  const comments = useSelector((state) => state.commentList.comments); */
+  /* const user = useSelector((state) => state.auth?.user); */
+  /*   const _comments = comments?.map(
     (comment) => comment.snippet.topLevelComment.snippet
-  );
+  ); */
   let timerId = null;
   function debounce(func, timer) {
     if (timerId) {
@@ -46,20 +47,21 @@ const Comments = ({ videoId, totalComments, socket }) => {
     }, timer);
   }
   const handleTyping = () => {
-    socket.emit("typing", `${user?.name} est entrain d'écrire...`);
+    socket.emit("typing", `${user?.username} est entrain d'écrire...`);
   };
 
   const handleComment = (e) => {
     e.preventDefault();
     const currentTime = new Date().getTime();
     // dispatch(addComment(videoId, text));
-    if (text.trim() && user?.name) {
+    if (text.trim()) {
       socket.emit("comment", {
-        text: text,
-        name: user?.name,
-        photo: user?.photoURL,
+        comment: text,
+        name: user?.username,
+        videoId: videoId,
+        userId: user?._id,
+        photo: user?.photo,
         time: currentTime,
-        id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
       });
     }
@@ -70,11 +72,7 @@ const Comments = ({ videoId, totalComments, socket }) => {
       <p>{totalComments} Commentaires</p>
       <p style={{ height: "6px" }}>{typingStatus}</p>
       <div className="my-2 comments__form d-flex w-100">
-        <img
-          src={user?.photoURL}
-          alt="avatar"
-          className="mr-3 rounded-circle"
-        />
+        <img src={user?.photo} alt="avatar" className="mr-3 rounded-circle" />
         <form onSubmit={handleComment} className="d-flex flex-grow-1">
           <input
             type="text"
