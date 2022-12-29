@@ -22,7 +22,7 @@ const Comments = ({ videoId, totalComments, socket }) => {
       }
     });
     socket.on("commentResponse", (comment) =>
-      setMessages([...messages, comment])
+      setMessages([comment, ...messages])
     );
     /*  dispatch(getCommentsOfVideoById(videoId)); */
   }, [videoId /* dispatch */, socket, messages]);
