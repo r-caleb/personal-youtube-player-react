@@ -16,7 +16,10 @@ const Comments = ({ videoId, totalComments, socket }) => {
 
   useEffect(() => {
     socket.on("output-comments", (comment) => {
-      setMessages(comment);
+      {
+        console.log(comment);
+        setMessages(comment);
+      }
     });
     socket.on("commentResponse", (comment) =>
       setMessages([...messages, comment])
@@ -57,11 +60,13 @@ const Comments = ({ videoId, totalComments, socket }) => {
     if (text.trim()) {
       socket.emit("comment", {
         comment: text,
-        name: user?.username,
         videoId: videoId,
-        userId: user?._id,
-        photo: user?.photo,
-        time: currentTime,
+        userId: {
+          _id: user?._id,
+          username: user?.username,
+          photo: user?.photo,
+        },
+        createdAt: currentTime,
         socketID: socket.id,
       });
     }
