@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-const Comments = ({ videoId, totalComments, socket }) => {
+const Comments = ({ videoId, socket }) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [typingStatus, setTypingStatus] = useState("");
@@ -17,7 +17,6 @@ const Comments = ({ videoId, totalComments, socket }) => {
   useEffect(() => {
     socket.on("output-comments", (comment) => {
       {
-        console.log(comment);
         setMessages(comment);
       }
     });
@@ -72,6 +71,7 @@ const Comments = ({ videoId, totalComments, socket }) => {
     }
     setText("");
   };
+  const totalComments = messages.length;
   return (
     <div className="comments">
       <p>{totalComments} Commentaires</p>

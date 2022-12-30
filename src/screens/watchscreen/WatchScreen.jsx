@@ -48,7 +48,6 @@ const WatchScreen = ({ socket }) => {
         )}
         <Comments
           videoId={id}
-          totalComments={video?.statistics?.commentCount}
           socket={socket}
         />
       </Col>
