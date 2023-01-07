@@ -1,17 +1,58 @@
 .comment {
-    font-size: 0.9rem;
-    border-bottom: 2px solid #353946;
-    img {
+   img {
+      min-width: 45px;
        width: 45px;
        height: 45px;
        margin-right: 10px;
        object-fit: cover;
     }
-    &__header {
+     &__header {
        color: #fff;
     }
     &__body {
        overflow: hidden;
+       width: 100%;
+       .like-dislike{
+         display: flex;
+         span{
+            margin-right: 1rem;
+         }
+         .reply{
+            cursor: pointer;
+         }
+       }
+      .comment__form{
+      img {
+         width: 45px;
+         height: 45px;
+         object-fit: cover;
+      }
+      input {
+         background: transparent;
+         border: none;
+         border-bottom: 2px solid #353946;
+         color: #fff;
+         margin-left: 15px;
+         &:focus {
+            outline: none;
+         }
+      }
+   
+      button {
+         background-color: #353946;
+         color: #fff;
+         letter-spacing: 0.5px;
+         &:focus {
+            border: none;
+            outline: none;
+         }
+      }
+  
     }
+    font-size: 0.9rem;
+    border-bottom: 2px solid #353946;
+   }
+   .comment__list{
+   }
  }
  

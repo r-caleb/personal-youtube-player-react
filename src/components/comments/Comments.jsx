@@ -24,7 +24,16 @@ const Comments = ({ videoId, socket }) => {
       setMessages([comment, ...messages])
     );
     /*  dispatch(getCommentsOfVideoById(videoId)); */
-  }, [videoId /* dispatch */, socket, messages]);
+  }, [socket, messages]);
+  const parentComments = messages.filter(
+    (message) => message.parentCommentId === null
+  );
+  const subComments = (commentId) => {
+   return messages.filter(
+      (subComment) =>
+        subComment.parentCommentId === commentId 
+    );
+  };
   const user = JSON.parse(sessionStorage.getItem("mongo-user"));
   useEffect(() => {
     socket.on("typingResponse", (data) => {
@@ -34,11 +43,6 @@ const Comments = ({ videoId, socket }) => {
       }, 1000);
     });
   }, [socket]);
-  /*  const comments = useSelector((state) => state.commentList.comments); */
-  /* const user = useSelector((state) => state.auth?.user); */
-  /*   const _comments = comments?.map(
-    (comment) => comment.snippet.topLevelComment.snippet
-  ); */
   let timerId = null;
   function debounce(func, timer) {
     if (timerId) {
@@ -52,7 +56,7 @@ const Comments = ({ videoId, socket }) => {
     socket.emit("typing", `${user?.username} est entrain d'écrire...`);
   };
 
-  const handleComment = (e) => {
+  const handleComment = (e, text, parentCommentId) => {
     e.preventDefault();
     const currentTime = new Date().getTime();
     // dispatch(addComment(videoId, text));
@@ -65,20 +69,24 @@ const Comments = ({ videoId, socket }) => {
           username: user?.username,
           photo: user?.photo,
         },
+        parentCommentId: parentCommentId,
         createdAt: currentTime,
         socketID: socket.id,
       });
     }
     setText("");
   };
-  const totalComments = messages.length;
+  const totalComments = parentComments.length;
   return (
     <div className="comments">
       <p>{totalComments} Commentaires</p>
       <p style={{ height: "6px" }}>{typingStatus}</p>
       <div className="my-2 comments__form d-flex w-100">
         <img src={user?.photo} alt="avatar" className="mr-3 rounded-circle" />
-        <form onSubmit={handleComment} className="d-flex flex-grow-1">
+        <form
+          onSubmit={(e) => handleComment(e, text)}
+          className="d-flex flex-grow-1"
+        >
           <input
             type="text"
             className="flex-grow-1"
@@ -91,8 +99,14 @@ const Comments = ({ videoId, socket }) => {
         </form>
       </div>
       <div className="comments__list">
-        {messages?.map((message, i) => (
-          <Comment message={message} typingStatus={typingStatus} key={i} />
+        {parentComments?.map((message, i) => (
+          <Comment
+          key={i}
+            message={message}
+            handleComment={handleComment}
+            typingStatus={typingStatus}
+            subComments={subComments(message._id)}
+          />
         ))}
       </div>
     </div>
