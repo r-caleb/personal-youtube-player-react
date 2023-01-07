@@ -26,12 +26,12 @@ const Comments = ({ videoId, socket }) => {
     /*  dispatch(getCommentsOfVideoById(videoId)); */
   }, [socket, messages]);
   const parentComments = messages.filter(
-    (message) => message.parentCommentId === null
+    (message) => message.parentCommentId === null && videoId===message.videoId
   );
   const subComments = (commentId) => {
    return messages.filter(
       (subComment) =>
-        subComment.parentCommentId === commentId 
+        subComment.parentCommentId === commentId && videoId===subComment.videoId
     );
   };
   const user = JSON.parse(sessionStorage.getItem("mongo-user"));
