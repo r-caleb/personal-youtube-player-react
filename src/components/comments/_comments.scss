@@ -1,3 +1,6 @@
+@import '../../_base.scss';
+
+.comments{
 .comments__form {
     img {
        width: 45px;
@@ -25,4 +28,8 @@
        }
     }
  }
- 
+ .form-select{
+   background-color: $text-color !important;
+   border: none !important;
+ }
+}

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Comment from "../comment/Comment";
+import { Col, Form, Row } from "react-bootstrap";
 import "./_comments.scss";
 import {
   getCommentsOfVideoById,
@@ -7,12 +8,14 @@ import {
 } from "../../redux/actions/comments.action";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+const categories = ["Plus pertinent", "Plus récent"];
 
 const Comments = ({ videoId, socket }) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [typingStatus, setTypingStatus] = useState("");
   const [text, setText] = useState("");
+  const [activeElement, setActiveElement] = useState(categories[0]);
 
   useEffect(() => {
     socket.on("output-comments", (comment) => {
@@ -26,12 +29,13 @@ const Comments = ({ videoId, socket }) => {
     /*  dispatch(getCommentsOfVideoById(videoId)); */
   }, [socket, messages]);
   const parentComments = messages.filter(
-    (message) => message.parentCommentId === null && videoId===message.videoId
+    (message) => message.parentCommentId === null && videoId === message.videoId
   );
   const subComments = (commentId) => {
-   return messages.filter(
+    return messages.filter(
       (subComment) =>
-        subComment.parentCommentId === commentId && videoId===subComment.videoId
+        subComment.parentCommentId === commentId &&
+        videoId === subComment.videoId
     );
   };
   const user = JSON.parse(sessionStorage.getItem("mongo-user"));
@@ -76,10 +80,30 @@ const Comments = ({ videoId, socket }) => {
     }
     setText("");
   };
+  const handleSelect = (e) => {
+    setActiveElement(e.target.value);
+  };
   const totalComments = parentComments.length;
   return (
     <div className="comments">
       <p>{totalComments} Commentaires</p>
+      <Row>
+        <Col>
+        <Form.Select
+          aria-label="Default select example"
+          onChange={handleSelect}
+        >
+          {categories.map((category, index) => (
+            <option value={category} key={index}>
+              {category}
+            </option>
+          ))}
+        </Form.Select>
+        </Col>
+        <Col></Col>
+        <Col></Col>
+        <Col></Col>
+      </Row>
       <p style={{ height: "6px" }}>{typingStatus}</p>
       <div className="my-2 comments__form d-flex w-100">
         <img src={user?.photo} alt="avatar" className="mr-3 rounded-circle" />
@@ -101,7 +125,7 @@ const Comments = ({ videoId, socket }) => {
       <div className="comments__list">
         {parentComments?.map((message, i) => (
           <Comment
-          key={i}
+            key={i}
             message={message}
             handleComment={handleComment}
             typingStatus={typingStatus}
